@@ -2,7 +2,6 @@ from flask import Flask, render_template # type: ignore
 
 app = Flask(__name__)
 
-# Define routes with strict_slashes=False
 @app.route('/', strict_slashes=False)
 def index():
     return 'Hello HBNB!'
@@ -13,14 +12,12 @@ def hbnb():
 
 @app.route('/c/<text>', strict_slashes=False)
 def c(text):
-    # Replace underscore (_) symbols with space
     text = text.replace('_', ' ')
     return 'C ' + text
 
 @app.route('/python/', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def python(text='is cool'):
-    # Replace underscore (_) symbols with space
     text = text.replace('_', ' ')
     return 'Python ' + text
 
