@@ -42,7 +42,7 @@ def number_template(n):
 def number_odd_or_even(n):
     if isinstance(n, int):
         odd_or_even = 'odd' if n % 2 != 0 else 'even'
-        return render_template('number_odd_or_even.html', number=n, odd_or_even)
+        return render_template('number_odd_or_even.html', number=n, odd_or_even=odd_or_even)
     else:
         return 'Not Found', 404
 
