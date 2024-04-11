@@ -77,5 +77,4 @@ class DBStorage:
 
     def close(self):
         """Clise session"""
-        if self.__session is not None:
-            self.__session.remove()
+        self.__session.close()
