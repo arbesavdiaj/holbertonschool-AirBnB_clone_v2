@@ -60,7 +60,7 @@ def number_template(n):
     return number template + int
     """
     if isinstance(n, int):
-        return render_template('number_template.html', number=n)
+        return render_template('number_template.html', n=n)
     else:
         return 'Not Found', 404
 
