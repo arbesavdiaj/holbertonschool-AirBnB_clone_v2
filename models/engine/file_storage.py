@@ -18,6 +18,10 @@ class FileStorage:
             return cls_dict
         return FileStorage.__objects
 
+    def close(self):
+        """Deserializes the JSON file to objects"""
+        self.reload()
+
     def new(self, obj):
         """Adds new object to storage dictionary"""
         self.all().update({obj.to_dict()["__class__"] + "." + obj.id: obj})
