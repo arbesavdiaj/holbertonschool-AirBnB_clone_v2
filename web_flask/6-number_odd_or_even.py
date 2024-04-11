@@ -1,82 +1,74 @@
 #!/usr/bin/python3
 """
-odd or even
+Module to initiate a flask app
 """
-
 from flask import Flask, render_template
+
 
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
+@app.route("/", strict_slashes=False)
 def index():
     """
-    return hello HBNB!
+    Index route
     """
-    return 'Hello HBNB!'
+
+    return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes=False)
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """
-    return Hbnb
+    hbnb route
     """
-    return 'HBNB'
+
+    return "HBNB"
 
 
-@app.route('/c/<text>', strict_slashes=False)
+@app.route("/c/<text>", strict_slashes=False)
 def c(text):
     """
-    C + text
+    Dynamic routing
     """
-    text = text.replace('_', ' ')
-    return 'C ' + text
+    text = text.replace("_", " ")
+    return "C " + text
 
 
-@app.route('/python/', strict_slashes=False)
-@app.route('/python/<text>', strict_slashes=False)
+@app.route('/python/')
+@app.route("/python/<text>", strict_slashes=False)
 def python(text='is cool'):
     """
-    python + text
+    Dynamic routing
     """
-    text = text.replace('_', ' ')
-    return 'Python ' + text
+    if text:
+        return "Python " + text.replace("_", " ")
+    return "Python " + text
 
 
-@app.route('/number/<int:n>', strict_slashes=False)
-def number(n):
+@app.route('/number/<int:number>')
+def number(number):
     """
-    number + int
+    Dynamic routing
     """
-    if isinstance(n, int):
-        return f'{n} is a number'
-    else:
-        return 'Not Found', 404
+    return str(number) + " is a number"
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """
-    number template + int
+    Dynamic routing and template rendering
     """
-    if isinstance(n, int):
-        return render_template('number_template.html', number=n)
-    else:
-        return 'Not Found', 404
+    return render_template('5-number.html', number=n)
 
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def number_odd_or_even(n):
     """
-    number odd or even + int
+    Dynamic routing and template rendering
     """
-    if isinstance(n, int):
-        odd_or_even = 'odd' if n % 2 != 0 else 'even'
-        return render_template('number_odd_or_even.html',
-                               number=n, odd_or_even=odd_or_even)
-    else:
-        return 'Not Found', 404
+    return render_template('6-number_odd_or_even.html', number=n)
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(debug=True)
