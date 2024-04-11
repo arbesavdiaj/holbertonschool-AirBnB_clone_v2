@@ -23,10 +23,7 @@ def states_list():
     """
     dynamic routing
     """
-    all_states = [{'id': value.to_dict()['id'],
-                   'state': value.to_dict()['name']}
-                  for value in storage.all(State).values()]
-    all_states = sorted(all_states, key=lambda state: state['state'])
+    all_states = storage.all(State).values()
     return render_template('7-states_list.html', all_states=all_states)
 
 
