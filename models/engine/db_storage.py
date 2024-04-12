@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """DBStorage class for AirBnB"""
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, Session, scoped_session, relationship
 from os import getenv
 from models.base_model import BaseModel, Base
 from models.user import User
@@ -8,8 +10,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session, scoped_session, relationship
 
 
 class DBStorage:
@@ -76,5 +76,6 @@ class DBStorage:
         self.__session = Session()
 
     def close(self):
-        """Clise session"""
+        """Close session"""
+        self.reload()
         self.__session.close()
